@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: apache-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/sejaltyagi12/apache.git  # Replace with your Git repository URL
+    targetRevision: main      # Git branch
+    path: dev           # Path to the Apache manifest
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+    - CreateNamespace=true
