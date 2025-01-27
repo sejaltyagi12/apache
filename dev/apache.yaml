@@ -17,6 +17,7 @@ spec:
         image: httpd:latest
         ports:
         - containerPort: 7070
+        command: [ "httpd", "-D", "FOREGROUND", "-C", "Listen 7070" ]
 ---
 apiVersion: v1
 kind: Service
